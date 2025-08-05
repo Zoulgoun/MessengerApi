@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Messenger</title>
+    <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+    <div id="auth-form-container" style="display: block;">
+        <h2>Авторизация</h2>
+        <form id="loginForm">
+            <input type="email" name ="email" placeholder="Email" required />
+            <input type="password" name="password" placeholder="Пароль" required />
+            <button type="submit">Войти</button>
+        </form>
+    </div>
+
+    <div id="chat-window" style="display: none;">
+        <header>
+            <span id="username"></span>
+            <button onclick="logout()">Выход</button>
+        </header>
+        <section id="messages-section"></section>
+        <footer>
+            <textarea id="messageInput" rows="2" cols="40" placeholder="Ваше сообщение..."></textarea>
+            <button onclick="sendMessage()">Отправить</button>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"></script>
+    <script src="js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Минималистичный чат</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 400px;
+            max-width: 100%;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            text-align: center;
+            padding: 1rem;
+            color: #fff;
+            background-color: #007BFF;
+        }
+
+        h1 {
+            font-size: 1.5em;
+            margin-bottom: 0.5rem;
+        }
+
+        main {
+            padding: 1rem;
+            min-height: 300px;
+            overflow-y: auto;
+        }
+
+        footer {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: #fafafa;
+        }
+
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 0.5rem;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            padding: 0.5rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+            li:last-child {
+                border-bottom: none;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Простой чат</h1>
+        </header>
+        <main id="messages">
+            
+            <ul></ul>
+        </main>
+        <footer>
+            <input type="text" placeholder="Введите сообщение..." id="messageInput" />
+            <button onclick="sendMessage()">Отправить</button>
+        </footer>
+    </div>
+    <script>
+    function sendMessage() {
+        const messageInput = document.querySelector('#messageInput');
+        const messagesList = document.querySelector('#messages > ul');
+        const messageText = messageInput.value.trim();
+
+        if (messageText !== '') {
+            const newMessage = `<li>${messageText}</li>`;
+            messagesList.insertAdjacentHTML('beforeend', newMessage);
+            messageInput.value = '';
+        }
+    }
+    </script>
+</body>
+</html>

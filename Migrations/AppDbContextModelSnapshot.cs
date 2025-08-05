@@ -1,0 +1,103 @@
+﻿
+using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+
+#nullable disable
+
+namespace MessengerApi.Migrations
+{
+    [DbContext(typeof(AppDbContext))]
+    partial class AppDbContextModelSnapshot : ModelSnapshot
+    {
+        protected override void BuildModel(ModelBuilder modelBuilder)
+        {
+#pragma warning disable 612, 618
+            modelBuilder
+                .HasAnnotation("ProductVersion", "9.0.6")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("MessengerApi.Models.LoginViewModel", b =>
+                {
+                    b.Property<string>("Username")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Username");
+
+                    b.ToTable("Logging");
+                });
+
+            modelBuilder.Entity("MessengerApi.Models.Message", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ReceiverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("SenderId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("SentAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Messages");
+                });
+
+            modelBuilder.Entity("MessengerApi.Models.RegistrationViewModel", b =>
+                {
+                    b.Property<string>("Username")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Username");
+
+                    b.ToTable("Registrations");
+                });
+
+            modelBuilder.Entity("MessengerApi.Models.User", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<string>("HashedPassword")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Users");
+                });
+#pragma warning restore 612, 618
+        }
+    }
+}
